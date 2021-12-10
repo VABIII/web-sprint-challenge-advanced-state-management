@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import {connect} from "react-redux";
 import {addSmurf} from "../actions";
 
+const initialState = {
+    id: Date.now(),
+        name:"",
+    position:"",
+    nickname:"",
+    description:""
+};
+
 
 const AddForm = (props) => {
     const {addSmurf} = props
 
-    const [state, setState] = useState({
-        id: Date.now(),
-        name:"",
-        position:"",
-        nickname:"",
-        description:""
-    });
+    const [state, setState] = useState(initialState);
     console.log("props: ", props, "state: ", state)
 
     const errorMessage = "";
@@ -27,6 +29,7 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         addSmurf(state)
+        setState(initialState)
 
     }
 

@@ -52,7 +52,7 @@ export const addSmurf = newSmurf => dispatch => {
     axios.post("http://localhost:3333/smurfs", newSmurf)
         .then(res => {
             console.log(res)
-            dispatch(addNewSmurf(newSmurf));
+            dispatch(addNewSmurf(res.data));
         })
         .catch(err => {
             dispatch(fetchFail(err));
