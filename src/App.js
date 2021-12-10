@@ -10,7 +10,7 @@ import "./App.css";
 import axios from "axios";
 
 const App = props => {
-    console.log(props)
+
 
     useEffect(() => {
         props.getSmurfs();

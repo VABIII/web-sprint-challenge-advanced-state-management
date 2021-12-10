@@ -3,7 +3,7 @@ import axios from 'axios';
 export const FETCH_START = "FETCH_START";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
-export const ADD_SMURF = "ADD_SMURF";
+export const ADD_NEW_SMURF = "ADD_SMURF";
 export const ADD_ERROR = "ADD_ERROR";
 
 //Task List:
@@ -28,6 +28,10 @@ export const addError = err => {
     return({type: ADD_ERROR, payload: err})
 }
 
+export const addNewSmurf = newSmurf => {
+    return({type: ADD_NEW_SMURF, payload: newSmurf})
+}
+
 export const getSmurfs = () => dispatch => {
     dispatch(fetchStart());
     axios.get(`http://localhost:3333/smurfs`)
@@ -43,7 +47,17 @@ export const getSmurfs = () => dispatch => {
 
 }
 
-
+export const addSmurf = newSmurf => dispatch => {
+    dispatch(fetchStart());
+    axios.post("http://localhost:3333/smurfs", newSmurf)
+        .then(res => {
+            console.log(res)
+            dispatch(addNewSmurf(newSmurf));
+        })
+        .catch(err => {
+            dispatch(fetchFail(err));
+        })
+}
 
 
 

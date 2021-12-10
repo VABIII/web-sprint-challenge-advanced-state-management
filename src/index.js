@@ -14,15 +14,12 @@ const { worker } = require('./mocks/browser');
 worker.start();
 
 
-console.log(store)
-
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
     <Provider store={store} >
         <App />
-    // </Provider>
-,
+    </Provider>,
     rootElement
 );
 

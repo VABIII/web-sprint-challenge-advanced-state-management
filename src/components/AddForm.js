@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import {connect} from "react-redux";
+import {addSmurf} from "../actions";
+
 
 const AddForm = (props) => {
+    const {addSmurf} = props
+
     const [state, setState] = useState({
+        id: Date.now(),
         name:"",
         position:"",
         nickname:"",
         description:""
     });
+    console.log("props: ", props, "state: ", state)
 
-    //remove when error state is added
     const errorMessage = "";
 
     const handleChange = e => {
@@ -21,11 +26,8 @@ const AddForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
-            //dispatch a custom error action
-        } else {
-            //dispatch an addSmurf action
-        }
+        addSmurf(state)
+
     }
 
     return(<section>
@@ -55,17 +57,29 @@ const AddForm = (props) => {
     </section>);
 }
 
+
 const mapStateToProps = state => {
     return {
-        error: state.error
-    }
+            error: state.error
+        }
+
 }
 
-
-export default connect(mapStateToProps, {})(AddForm);
+export default connect(mapStateToProps, {addSmurf: addSmurf})(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.
 //2. Replace all instances of the errorMessage static variable with your error message state value. 
 //3. Within the handleSubmit function, replace the static assignment to errorMessage with a call to the setError action. Test that an error is displayed when this validation code fails.
 //4. Within the handleSubmit function, call your addSmurf action with the smurf name, position, nickname and summury passed as arguments. Test that a smurf is correctly added to when the form is submitted.
+
+
+
+
+// if (state.name === "" || state.position === "" || state.nickname === "") {
+//     //dispatch a custom error action
+//     // dispatch(addError(errorMessage))
+// } else {
+//     //dispatch an addSmurf action
+//     props.dispatch(addSmurf(state))
+// }
