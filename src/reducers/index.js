@@ -1,4 +1,4 @@
-import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_NEW_SMURF, ADD_ERROR} from "../actions";
+import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_NEW_SMURF, SET_ERROR} from "../actions";
 
 
 export const initialState = {
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action)=>{
                 isLoading: false,
                 error: ""
             })
-        case ADD_ERROR:
+        case SET_ERROR:
             return ({
                 ...state,
                 smurfs: state.smurfs,
