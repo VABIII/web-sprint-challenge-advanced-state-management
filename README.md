@@ -113,8 +113,30 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. What problem does the context API help solve?
 
+     A Context API seeks a way to be able to share global state information with all components that need access to it 
+     without having to prop drill through many layers of components that don't need to access  it.   
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+    The reducer is a centralized location where application level state is created, held, and modified. Actions are 
+    objects that can contain the methods that allow you to change application state. These objects can also contain the
+    information in which the application state will be updated to. The store is like a thoroughfare  between the 
+    reducer and the components allows the comps to access the application state held in the reducer.
+    
 
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
 
+    Thunk is a piece of middleware that action creators are passed through and allows them to return functions and
+    action objects. It gives action creator functions the ability to dispatch actions themselves. Thunk allows for
+    multiple dispatches to be executed with a single action, and also allows for asynchronous dispatching of actions.
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+    
+    Context API seems like the best bet in my opinion. There is less of a font loaded overhead cost of setup time, and
+    there are fewer hoops to jump through when using it. There are some issues to consider when choosing a centralized
+    state mgmt system, such as the fact that when using a Context API it causes all components to rerender whenever
+    a state change is made. While with Redux, only the components that are affected by the state change are re-rendered.
+    Ultimately, the type of application you are building should have more of a determining factor than a developers
+    personal preferences. That being said, all things being equal, I'm going with the Context API everytime.
+
+
