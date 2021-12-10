@@ -9,7 +9,7 @@ const initialState = {
     nickname:"",
     description:""
 };
-
+ddfhdhdndrn
 
 const AddForm = (props) => {
     const {addSmurf} = props
